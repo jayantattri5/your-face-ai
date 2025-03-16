@@ -14,8 +14,9 @@ import {
   FileRejection,
   useDropzone as rootUseDropzone,
 } from "react-dropzone";
-import { Button, ButtonProps } from "components/ui/button";
+import { Button } from "components/ui/button";
 import { CloudUploadIcon, Trash2Icon } from "lucide-react";
+import { ButtonProps } from "@headlessui/react";
 
 type DropzoneResult<TUploadRes, TUploadError> =
   | {
@@ -346,7 +347,9 @@ const useDropzone = <TUploadRes, TUploadError = string>(
 
       const onDropFilePromises = slicedNewFiles.map(async (file, index) => {
         if (fileCount + 1 > maxNewFiles) {
-          await onRemoveFile(fileStatuses[index].id);
+          if (fileStatuses[index]) {
+            await onRemoveFile(fileStatuses[index].id);
+          }
         }
 
         const id = crypto.randomUUID();
@@ -533,7 +536,7 @@ const DropzoneFileList = forwardRef<HTMLOListElement, DropZoneFileListProps>(
         {...props}
         className={cn("flex flex-col gap-4", props.className)}
       >
-        {props.children}
+        {props.children as React.ReactNode}
       </ol>
     );
   },
@@ -586,7 +589,7 @@ const DropzoneFileListItem = forwardRef<
           className,
         )}
       >
-        {props.children}
+        {props.children as React.ReactNode}
       </li>
     </DropzoneFileListContext.Provider>
   );
@@ -680,7 +683,7 @@ const DropzoneRemoveFile = forwardRef<
         className,
       )}
     >
-      {props.children}
+      {props.children as React.ReactNode}
       <span className="sr-only">Remove file</span>
     </Button>
   );
@@ -715,7 +718,7 @@ const DropzoneRetryFile = forwardRef<HTMLButtonElement, DropzoneRetryFileProps>(
           className,
         )}
       >
-        {props.children}
+        {props.children as React.ReactNode}
         <span className="sr-only">Retry</span>
       </Button>
     );
@@ -882,7 +885,6 @@ export function MultiImages() {
                   </p>
                 </div>
                 <DropzoneRemoveFile
-                  variant="ghost"
                   className="shrink-0 hover:outline"
                 >
                   <Trash2Icon className="size-4" />

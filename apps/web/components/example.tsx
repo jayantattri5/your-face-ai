@@ -8,8 +8,6 @@ import {
   Edit2 
 } from 'lucide-react';
 import "./examples.css";
-import ImageEditor from './ImageEditor';
-import ImageEditorApp from './ImageEditor';
 
 interface ImageEditorProps {
   imageUrl: string;

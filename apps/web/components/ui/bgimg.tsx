@@ -1,13 +1,19 @@
 'use client';
 import { motion } from 'framer-motion';
+
+declare global {
+  interface Window {
+    buttonAnimationFrame?: number;
+  }
+}
 import { useState, useEffect, useRef } from 'react';
 import Showcase from './Logoshowcase';
 
 export default function Netflix() {
   const [email, setEmail] = useState('');
-  const mainHeadlineRef = useRef(null);
-  const subHeadlineRef = useRef(null);
-  const buttonRef = useRef(null);
+  const mainHeadlineRef = useRef<HTMLHeadingElement>(null);
+  const subHeadlineRef = useRef<HTMLHeadingElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
   
   useEffect(() => {
     // Get references to the headline elements
@@ -22,12 +28,12 @@ export default function Netflix() {
     let subLetters = [];
     
     // Create spans for main headline
-    const mainText = "Fuck Waiting for the Perfect Shot";
+    const mainText = "Don't Wait for the Perfect Shot";
     mainHeadline.innerHTML = '';
     
     for (let i = 0; i < mainText.length; i++) {
       const letter = document.createElement('span');
-      letter.innerHTML = mainText[i] === ' ' ? '&nbsp;' : mainText[i];
+      letter.innerHTML = mainText[i] === ' ' ? '&nbsp;' : mainText[i] || '';
       letter.style.display = 'inline-block';
       letter.style.transition = 'color 0.5s ease-in-out';
       letter.style.color = '#FFFFFF';
@@ -41,7 +47,7 @@ export default function Netflix() {
     
     for (let i = 0; i < subText.length; i++) {
       const letter = document.createElement('span');
-      letter.innerHTML = subText[i] === ' ' ? '&nbsp;' : subText[i];
+      letter.innerHTML = subText[i] === ' ' ? '&nbsp;' : subText[i] || '';
       letter.style.display = 'inline-block';
       letter.style.transition = 'color 0.5s ease-in-out';
       letter.style.color = '#FFFFFF';
@@ -63,6 +69,7 @@ export default function Netflix() {
     // Function to animate letter colors like diffusing in water
     const animateLetters = () => {
       const palette = colorPalettes[currentPaletteIndex];
+      if (!palette) return;
       currentPaletteIndex = (currentPaletteIndex + 1) % colorPalettes.length;
       
       // Animate main headline with ripple effect
@@ -75,8 +82,11 @@ export default function Netflix() {
       for (let i = centerIndex; i < mainLetters.length; i++) {
         const delay = (i - centerIndex) * mainLetterDelay;
         setTimeout(() => {
+          if (!palette) return;
           const colorIndex = Math.floor(Math.random() * palette.length);
-          mainLetters[i].style.color = palette[colorIndex];
+          if (mainLetters[i] && palette[colorIndex]) {
+            (mainLetters[i]!).style.color = palette[colorIndex]!;
+          }
         }, delay);
       }
       
@@ -84,8 +94,11 @@ export default function Netflix() {
       for (let i = centerIndex - 1; i >= 0; i--) {
         const delay = (centerIndex - i) * mainLetterDelay;
         setTimeout(() => {
+          if (!palette) return;
           const colorIndex = Math.floor(Math.random() * palette.length);
-          mainLetters[i].style.color = palette[colorIndex];
+          if (mainLetters[i] && palette[colorIndex]) {
+            (mainLetters[i]!).style.color = palette[colorIndex]!;
+          }
         }, delay);
       }
       
@@ -96,8 +109,11 @@ export default function Netflix() {
       for (let i = 0; i < subLetters.length; i++) {
         const delay = i * subLetterDelay + 1500; // Start after main headline
         setTimeout(() => {
+          if (!palette) return;
           const colorIndex = Math.floor(Math.random() * palette.length);
-          subLetters[i].style.color = palette[colorIndex];
+          if (subLetters[i] && palette[colorIndex]) {
+            subLetters[i]!.style.color = palette[colorIndex];
+          }
         }, delay);
       }
       
@@ -106,7 +122,10 @@ export default function Netflix() {
     };
     
     // Function to animate button with water-like color diffusion
-    const animateButtonDiffusion = (palette) => {
+    const animateButtonDiffusion = (palette: string | any[] | undefined) => {
+      if (!palette || palette.length < 2) {
+    return;
+  }
       // Remove existing gradient classes
       button.classList.remove('bg-gradient-to-r', 'from-amber-400', 'to-amber-300');
       
@@ -137,6 +156,7 @@ export default function Netflix() {
       const ctx = canvas.getContext('2d');
       
       // Create initial gradient background
+      if (!ctx) return;
       const grd = ctx.createLinearGradient(0, 0, width, 0);
       grd.addColorStop(0, palette[0]);
       grd.addColorStop(1, palette[1]);
@@ -144,7 +164,7 @@ export default function Netflix() {
       ctx.fillRect(0, 0, width, height);
       
       // Create diffusion points
-      const points = [];
+      const points: { x: number; y: number; radius: number; maxRadius: number; color: any; speed: number; }[] = [];
       const numPoints = 5;
       
       for (let i = 0; i < numPoints; i++) {
