@@ -2,24 +2,8 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import {
-  ClerkProvider,
-  SignedIn,
-  SignedOut,
-  SignInButton,
-  UserButton
+  ClerkProvider
 } from '@clerk/nextjs'
-import { Geist, Geist_Mono } from 'next/font/google'
-import App from "next/app";
-import { Appbar } from "@/components/ui/Appbar";
-import ParallelogramImageBackground from "@/components/ui/Parallelogram";
-import { Button } from "@headlessui/react";
-import FAQSection from "@/components/ui/faq";
-import Showcase from "@/components/ui/Logoshowcase";
-import Pricing from "@/components/ui/pricing";
-import AnimatedImageGrid from "@/components/ui/Parallelogram";
-import Hero from "@/components/Hero";
-import Netflix from "@/components/ui/bgimg";
-import ImageCollage from "@/components/ui/collage";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",

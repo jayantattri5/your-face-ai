@@ -1,11 +1,8 @@
 'use client';
-import { ChevronDown, Settings, Moon, Sun } from "lucide-react";
-import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@/components/ui/sidebar";
+import { ChevronDown } from "lucide-react";
+import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuItem } from "@/components/ui/sidebar";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@radix-ui/react-collapsible";
-import { useState, useEffect } from "react";
-import clsx from "clsx";
 import { Train } from "./train";
-import TextBox from "./textbox";
 import { GenerateImage } from "./GeneratePhotos";
 
 const menuSections = [
@@ -17,30 +14,17 @@ const menuSections = [
 ];
 
 export function AppSidebar() {
-  // Set dark mode as default
-  const [darkMode, setDarkMode] = useState(true);
-
-  // Toggle dark mode
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-  };
 
   return (
-    <Sidebar className={clsx(
-      "w-70 min-h-screen",
-      darkMode ? "bg-black text-white" : "bg-white text-black"
-    )}>
-      <SidebarGroupLabel className={darkMode ? "text-white" : ""}>
+    <Sidebar className=" w-70 min-h-screen bg-black text-white">
+      <SidebarGroupLabel className="text-white">
         This is a sidebar
       </SidebarGroupLabel>
       <SidebarContent>
-        {menuSections.map((section, index) => (
+        {menuSections.map((section, index) => (  
           <Collapsible 
             key={index} 
-            className={clsx(
-              "border-b", 
-              darkMode ? "border-gray-800" : "border-gray-800"
-            )}
+            className="border-b border-gray-800"
           >
             <CollapsibleTrigger 
               title={section.title} 
@@ -50,11 +34,8 @@ export function AppSidebar() {
               <ChevronDown className="transition-transform" />
             </CollapsibleTrigger>
             <CollapsibleContent 
-              title={section.title} 
-              className={clsx(
-                "p-4",
-                darkMode ? "bg-black text-white" : ""
-              )}
+              title={section.title}
+              className="p-4 bg-black text-white"
             >
               {section.title === "Generate Images from Prompt" ? (
                 <GenerateImage />
@@ -70,10 +51,7 @@ export function AppSidebar() {
             </CollapsibleContent>
           </Collapsible>
         ))}
-        <SidebarGroup className={clsx(
-          "pl-6 py-2", 
-          darkMode ? "text-gray-400" : "text-gray-400"
-        )}>
+        <SidebarGroup className="pl-6 py-2 text-gray-400">
           <SidebarMenu>
             <SidebarMenuItem>
             </SidebarMenuItem>

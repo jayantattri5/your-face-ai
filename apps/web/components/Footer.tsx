@@ -21,7 +21,7 @@ export function Footer() {
               >
                 <path d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3" />
               </svg>
-              <span className="font-bold font-mono text-xl">100xPhoto</span>
+              <span className="font-bold font-mono text-xl">YourFaceAI</span>
             </div>
 
             <p className="mt-4 max-w-sm text-muted-foreground">
@@ -32,7 +32,7 @@ export function Footer() {
             <div className="mt-6 flex gap-4">
               <Button variant="ghost" size="icon" asChild>
                 <Link
-                  href="https://x.com/100xdevs"
+                  href=""
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -54,7 +54,7 @@ export function Footer() {
               </Button>
               <Button variant="ghost" size="icon" asChild>
                 <Link
-                  href="https://github.com/code100x/photo-ai"
+                  href=""
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -122,19 +122,19 @@ export function Footer() {
                   href="/"
                   className="text-sm text-muted-foreground hover:text-foreground"
                 >
-                  Contact
+                  Contact Us
                 </Link>
                 <Link
                   href="/Legal"
                   className="text-sm text-muted-foreground hover:text-foreground"
                 >
-                  Privacy
+                  Return & Refunds
                 </Link>
                 <Link
                   href="/Legal"
                   className="text-sm text-muted-foreground hover:text-foreground"
                 >
-                  Terms
+                  Terms & Conditions
                 </Link>
               </nav>
             </div>
@@ -144,7 +144,7 @@ export function Footer() {
         <div className="mt-12 border-t pt-8">
           <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
             <p className="text-xs text-muted-foreground">
-              &copy; {new Date().getFullYear()} Your Face AI. All rights reserved.
+              &copy; {new Date().getFullYear()} Fabric Bazaar. All rights reserved.
             </p>
 
             <div className="flex gap-4">
@@ -153,7 +153,7 @@ export function Footer() {
                   href="/Legal"
                   className="text-xs text-muted-foreground hover:text-foreground"
                 >
-                  Privacy Policy
+                  Contact Us
                 </Link>
               </Button>
               <Button variant="ghost" size="sm" asChild>
@@ -161,7 +161,7 @@ export function Footer() {
                   href="/Legal"
                   className="text-xs text-muted-foreground hover:text-foreground"
                 >
-                  Terms of Service
+                  Terms & Conditions
                 </Link>
               </Button>
             </div>
