@@ -119,13 +119,13 @@ export function Footer() {
                   FAQ
                 </Link>
                 <Link
-                  href="/"
+                  href="/Legal/Contact"
                   className="text-sm text-muted-foreground hover:text-foreground"
                 >
                   Contact Us
                 </Link>
                 <Link
-                  href="/Legal"
+                  href="/Legal/Refund"
                   className="text-sm text-muted-foreground hover:text-foreground"
                 >
                   Return & Refunds
@@ -150,7 +150,7 @@ export function Footer() {
             <div className="flex gap-4">
               <Button variant="ghost" size="sm" asChild>
                 <Link
-                  href="/Legal"
+                  href="/Legal/Contact"
                   className="text-xs text-muted-foreground hover:text-foreground"
                 >
                   Contact Us

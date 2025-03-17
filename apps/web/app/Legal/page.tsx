@@ -17,7 +17,7 @@ export default function TermsOfService () {
       <section className="mt-6">
         <h2 className="text-2xl font-semibold">Acceptance of Terms of Service</h2>
         <p className="mt-2">
-        The Service is offered subject to acceptance without modification of all of these Terms of Service and all other operating rules, policies and procedures that may be published from time to time in connection with the Services by Your Face AI. In addition, some services offered through the Service may be subject to additional terms and conditions promulgated by Your Face AI and Interior AI from time to time; your use of such services is subject to those additional terms and conditions, which are incorporated into these Terms of Service by this reference.
+        The Service is offered subject to acceptance without modification of all of these Terms of Service and all other operating rules, policies and procedures that may be published from time to time in connection with the Services by Your Face AI. In addition, some services offered through the Service may be subject to additional terms and conditions promulgated by Your Face AI from time to time; your use of such services is subject to those additional terms and conditions, which are incorporated into these Terms of Service by this reference.
         </p>
         <p className="mt-2">
         Your Face AI may, in its sole discretion, refuse to offer the Service to any person or entity and change its eligibility criteria at any time. This provision is void where prohibited by law and the right to access the Service is revoked in such jurisdictions.
