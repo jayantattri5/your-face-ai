@@ -5,6 +5,7 @@ import FAQSection from "@/components/ui/faq";
 import ImageCollage from "@/components/ui/collage";
 import { Appbar } from "@/components/ui/Appbar";
 import { Footer } from "@/components/Footer";
+import ProductComparison from "@/components/ui/comparison";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
       <Netflix />
       <Showcase />
       <ImageCollage />
+      <ProductComparison />
       <Pricing />
       <FAQSection />
       <Footer />
