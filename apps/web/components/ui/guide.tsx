@@ -43,10 +43,10 @@ const AlternatingCarousel = () => {
       title: "Clear face visibility improves results",
       description: "Ensuring your face is clearly visible without obstruction helps the AI identify and recreate your distinctive features with higher accuracy",
       images: [
-        "https://meta.magicstudio.com/assets/grap/guidelines-2/guide-img-2.png",
-        "https://meta.magicstudio.com/assets/grap/guidelines-2/guide-img-4.png",
-        "https://meta.magicstudio.com/assets/grap/guidelines-2/guide-img-3.png",
-        "https://meta.magicstudio.com/assets/grap/guidelines-2/guide-img-1.png"
+        "https://photoai.com/cdn-cgi/image/format=auto,fit=cover,height=500,width=500,quality=50/assets/training_examples/good/h.jpeg?1716128114",
+        "https://photoai.com/cdn-cgi/image/format=auto,fit=cover,height=500,width=500,quality=50/assets/training_examples/good/g.jpeg?1708109686",
+        "https://photoai.com/cdn-cgi/image/format=auto,fit=cover,height=500,width=500,quality=50/assets/training_examples/good/e.jpeg?1708109686",
+        "https://photoai.com/cdn-cgi/image/format=jpeg,width=1000,quality=50/https://r2-us-west.photoai.com/1723596600-599fad91c8823eedc9646f3b6dec2c4e-1.png?1723596599"
       ]
     }
   ];
