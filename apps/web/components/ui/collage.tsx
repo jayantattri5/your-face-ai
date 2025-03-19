@@ -63,11 +63,6 @@ const ImageCollage = () => {
       likes: 191
     },
     {
-      url: "https://photoai.com/cdn-cgi/image/format=auto,fit=cover,width=250,height=375,quality=50/https://r2-us-west.photoai.com/1725072728-c9bd382d86c1b61feb5ce3f1a466fcf1-1.png",
-      prompt: "Cartoon dragon character in green and gray colors",
-      likes: 86
-    },
-    {
       url: "https://photoai.com/cdn-cgi/image/format=auto,fit=cover,width=250,height=375,quality=50/https://r2-us-west.photoai.com/1726236747-2c39f6dd3b04446be2017a51bc2ec0b9-4.png",
       prompt: "Line art cute kitten sitting",
       likes: 98
