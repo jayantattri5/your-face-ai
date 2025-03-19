@@ -4,7 +4,6 @@ import { BACKEND_URL } from "@/app/config"
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { ImageCard, ImageCardSkeleton, TImage } from "./ImageCard";
-import { Skeleton } from "./ui/skeleton";
 
 
 export default function GeneratedImages() {

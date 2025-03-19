@@ -10,7 +10,6 @@ import { useState, useEffect, useRef } from 'react';
 import Showcase from './Logoshowcase';
 
 export default function Netflix() {
-  const [email, setEmail] = useState('');
   const mainHeadlineRef = useRef<HTMLHeadingElement>(null);
   const subHeadlineRef = useRef<HTMLHeadingElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
