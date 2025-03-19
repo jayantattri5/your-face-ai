@@ -50,7 +50,7 @@ const ProductComparison = () => {
   return (
     <div className="bg-black p-6">
       {/* Added heading */}
-      <h1 className="text-6xl md:text-3xl font-bold text-white text-center mb-8">
+      <h1 className="text-6xl md:text-4xl font-bold text-white text-center mb-8">
         How does Your Face AI compare to other AI image generators?
       </h1>
       <p className="md:text-xl pb-10 text-white text-center mb-8">

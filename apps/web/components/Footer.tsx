@@ -83,28 +83,16 @@ export function Footer() {
               <p className="font-medium">Company</p>
               <nav className="flex flex-col space-y-2">
                 <Link
-                  href="/"
+                  href="/About"
                   className="text-sm text-muted-foreground hover:text-foreground"
                 >
                   About
                 </Link>
                 <Link
-                  href="/"
+                  href="/Pricing"
                   className="text-sm text-muted-foreground hover:text-foreground"
                 >
                   Pricing
-                </Link>
-                <Link
-                  href="/"
-                  className="text-sm text-muted-foreground hover:text-foreground"
-                >
-                  Blog
-                </Link>
-                <Link
-                  href="/"
-                  className="text-sm text-muted-foreground hover:text-foreground"
-                >
-                  Careers
                 </Link>
               </nav>
             </div>
@@ -113,7 +101,7 @@ export function Footer() {
               <p className="font-medium">Help</p>
               <nav className="flex flex-col space-y-2">
                 <Link
-                  href="/"
+                  href="/Faq"
                   className="text-sm text-muted-foreground hover:text-foreground"
                 >
                   FAQ

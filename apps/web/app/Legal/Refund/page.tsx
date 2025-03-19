@@ -20,6 +20,11 @@ export default function Refund () {
         <p className="mt-2  text-xl font-bold pb-4">
         You can cancel your subscription at any time though your subscription won't renew and you will not be charged again.
         </p>
+        <p className="mt-2  text-xl font-bold pb-4">
+        We also have a refund policy of 7 days, if you don't like our service you can get your full refund after 7 days by contacting us at the email given below</p>
+        <p className="mt-2  text-xl font-bold pb-4">
+        If you have any queries related to refund, please contact us at refund@yourfaceai.com
+        </p>
     </div>
   )
 }

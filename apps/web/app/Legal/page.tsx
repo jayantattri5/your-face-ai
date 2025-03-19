@@ -108,15 +108,6 @@ export default function TermsOfService () {
         </p>
       </section>
       <section className="mt-6">
-        <h2 className="text-2xl font-semibold">Age Requirements</h2>
-        <p className="mt-2">
-        By accessing the Services, you confirm that you’re at least 18 years old and meet the minimum age of digital consent in your country. If you are not old enough to consent to our Terms of Service in your country, your parent or guardian must agree to this Agreement on your behalf.
-        </p>
-        <p className="mt-2">
-        Please ask your parent or guardian to read these terms with you. If you’re a parent or legal guardian, and you allow your teenager to use the Services, then these terms also apply to you and you’re responsible for your teenager’s activity on the Services. No assurances are made as to the suitability of the Assets for you.
-        </p>
-      </section>
-      <section className="mt-6">
         <h2 className="text-2xl font-semibold">Miscellaneous</h2>
         <p className="mt-2">
         The Terms of Service are the entire agreement between you and Your Face AI with respect to the Service, and supersede all prior or contemporaneous communications and proposals (whether oral, written or electronic) between you and Your Face AI with respect to the Service. If any provision of the Terms of Service is found to be unenforceable or invalid, that provision will be limited or eliminated to the minimum extent necessary so that the Terms of Service will otherwise remain in full force and effect and enforceable. The failure of either party to exercise in any respect any right provided for herein shall not be deemed a waiver of any further rights hereunder. Your Face AI shall not be liable for any failure to perform its obligations hereunder due to any cause beyond Your Face AI’s reasonable control. The Terms of Service are personal to you, and are not assignable or transferable by you except with Your Face AI’s prior written consent. Your Face AI may assign, transfer or delegate any of its rights and obligations hereunder without consent. No agency, partnership, joint venture, or employment relationship is created as a result of the Terms of Service and neither party has any authority of any kind to bind the other in any respect. Except as otherwise provided herein, all notices under the Terms of Service will be in writing and will be deemed to have been duly given when received, if personally delivered or sent by certified or registered mail, return receipt requested; when receipt is electronically confirmed, if transmitted by facsimile or e-mail; or two days after it is sent, if sent for next day delivery by recognized overnight delivery service.

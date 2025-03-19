@@ -1,11 +1,13 @@
 import Netflix from "@/components/ui/bgimg";
-import Pricing from "@/components/ui/pricing";
 import Showcase from "@/components/ui/Logoshowcase";
-import FAQSection from "@/components/ui/faq";
+import FAQSection from "@/app/Faq/page";
 import ImageCollage from "@/components/ui/collage";
 import { Appbar } from "@/components/ui/Appbar";
 import { Footer } from "@/components/Footer";
 import ProductComparison from "@/components/ui/comparison";
+import PricingPage from "./Pricing/page";
+import ImageDescription from "@/components/ui/imagedescription";
+import UserGuide from "@/components/ui/guide";
 
 export default function Home() {
   return (
@@ -14,8 +16,9 @@ export default function Home() {
       <Netflix />
       <Showcase />
       <ImageCollage />
+      <UserGuide />
       <ProductComparison />
-      <Pricing />
+      <PricingPage />
       <FAQSection />
       <Footer />
     </div>
