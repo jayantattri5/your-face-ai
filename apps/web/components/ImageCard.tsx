@@ -1,6 +1,7 @@
 import { Skeleton } from "./ui/skeleton";
 import React, { useState } from 'react';
 import { Heart, Download, Eye, RotateCw, Copy, Edit, Zap, ZoomOut, Video, Box } from 'lucide-react';
+import { ImageEditor } from './ImageEditor';
 
 export interface TImage {
     id: string;
@@ -12,6 +13,8 @@ export function ImageCard(props: TImage) {
     const [isLiked, setIsLiked] = useState(false);
     const [isFullscreen, setIsFullscreen] = useState(false);
     const [isDownloading, setIsDownloading] = useState(false);
+    const [isEditing, setIsEditing] = useState(false);
+    const [imageUrl, setImageUrl] = useState(props.imageUrl);
     
     const handleLike = (e: React.MouseEvent) => {
         e.stopPropagation();
@@ -27,7 +30,7 @@ export function ImageCard(props: TImage) {
             setIsDownloading(true);
             
             // Fetch the image as a blob
-            const response = await fetch(props.imageUrl);
+            const response = await fetch(imageUrl);
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
@@ -42,7 +45,7 @@ export function ImageCard(props: TImage) {
             link.href = url;
             
             // Set filename based on the image ID or URL
-            const filename = props.imageUrl.split('/').pop() || `image-${props.id}.jpg`;
+            const filename = imageUrl.split('/').pop() || `image-${props.id}.jpg`;
             link.download = filename;
             
             // Append to body, click and remove
@@ -74,11 +77,26 @@ export function ImageCard(props: TImage) {
         try {
             // This would typically copy some prompt text associated with the image
             // For now, let's copy the image URL as an example
-            await navigator.clipboard.writeText(props.imageUrl);
+            await navigator.clipboard.writeText(imageUrl);
             alert('URL copied to clipboard!');
         } catch (err) {
             console.error('Failed to copy: ', err);
         }
+    };
+    
+    // Handle edit button click
+    const handleEdit = (e: React.MouseEvent) => {
+        e.stopPropagation();
+        setIsEditing(true);
+    };
+    
+    // Handle saving edited image
+    const handleSaveEdit = (editedImageUrl: string) => {
+        setImageUrl(editedImageUrl);
+        setIsEditing(false);
+        
+        // Here you would typically call an API to save the edited image
+        console.log('Image edited and saved:', editedImageUrl);
     };
     
     // Generic handler for other actions
@@ -98,7 +116,7 @@ export function ImageCard(props: TImage) {
             <div className="relative border rounded-xl border-gray-700 max-w-[400px] overflow-hidden bg-black text-white group cursor-pointer">
                 {/* Main image */}
                 {props.status === "GENERATED" ? (
-                    <img src={props.imageUrl} alt="Image" className="w-full h-64 object-cover" />
+                    <img src={imageUrl} alt="Image" className="w-full h-64 object-cover" />
                 ) : (
                     <div className="w-full h-64 bg-gray-800 animate-pulse" />
                 )}
@@ -136,14 +154,13 @@ export function ImageCard(props: TImage) {
                             <Eye className="w-6 h-6" />
                             <span className="absolute text-xs mt-16">VIEW</span>
                         </button>
-                        
                         <button 
                             className="w-12 h-12 rounded-full bg-black/60 flex items-center justify-center hover:bg-white/20 transition-all"
-                            onClick={(e) => handleAction('remix', e)}
+                            onClick={(e) => handleAction('zoomOut', e)}
                         >
-                            <RotateCw className="w-6 h-6" />
-                            <span className="absolute text-xs mt-16">REMIX</span>
-                        </button>
+                            <ZoomOut className="w-6 h-6" />
+                            <span className="absolute text-xs mt-16">ZOOM OUT</span>
+                        </button>                        
                         
                         {/* Middle row */}
                         <button 
@@ -156,7 +173,7 @@ export function ImageCard(props: TImage) {
                         
                         <button 
                             className="w-12 h-12 rounded-full bg-black/60 flex items-center justify-center hover:bg-white/20 transition-all"
-                            onClick={(e) => handleAction('edit', e)}
+                            onClick={handleEdit}
                         >
                             <Edit className="w-6 h-6" />
                             <span className="absolute text-xs mt-16">EDIT</span>
@@ -173,10 +190,10 @@ export function ImageCard(props: TImage) {
                         {/* Bottom row */}
                         <button 
                             className="w-12 h-12 rounded-full bg-black/60 flex items-center justify-center hover:bg-white/20 transition-all"
-                            onClick={(e) => handleAction('zoomOut', e)}
+                            onClick={(e) => handleAction('remix', e)}
                         >
-                            <ZoomOut className="w-6 h-6" />
-                            <span className="absolute text-xs mt-16">ZOOM OUT</span>
+                            <RotateCw className="w-6 h-6" />
+                            <span className="absolute text-xs mt-16">REMIX</span>
                         </button>
                         
                         <button 
@@ -186,20 +203,12 @@ export function ImageCard(props: TImage) {
                             <Video className="w-6 h-6" />
                             <span className="absolute text-xs mt-16">MAKE VIDEO</span>
                         </button>
-                        
-                        <button 
-                            className="w-12 h-12 rounded-full bg-black/60 flex items-center justify-center hover:bg-white/20 transition-all"
-                            onClick={(e) => handleAction('make3DModel', e)}
-                        >
-                            <Box className="w-6 h-6" />
-                            <span className="absolute text-xs mt-16">MAKE 3D MODEL</span>
-                        </button>
                     </div>
                 </div>
                 
                 {/* Footer with PLUS tag */}
                 <div className="absolute top-2 right-2 bg-green-500 text-white text-xs px-2 py-1 rounded">
-                    PLUS
+                    FLUX
                 </div>
                 
                 {/* Optional watermark or footer info */}
@@ -219,7 +228,7 @@ export function ImageCard(props: TImage) {
                             ✕
                         </button>
                         <img 
-                            src={props.imageUrl} 
+                            src={imageUrl} 
                             alt="Fullscreen view" 
                             className="max-w-full max-h-screen object-contain"
                             onClick={(e) => e.stopPropagation()} 
@@ -235,9 +244,29 @@ export function ImageCard(props: TImage) {
                                 <Download className="w-4 h-4" />
                                 Download
                             </button>
+                            <button 
+                                className="px-4 py-2 bg-blue-600 text-white rounded-full flex items-center gap-2 hover:bg-blue-700"
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    closeFullscreen();
+                                    setIsEditing(true);
+                                }}
+                            >
+                                <Edit className="w-4 h-4" />
+                                Edit
+                            </button>
                         </div>
                     </div>
                 </div>
+            )}
+            
+            {/* Image editor modal */}
+            {isEditing && (
+                <ImageEditor 
+                    imageUrl={imageUrl}
+                    onClose={() => setIsEditing(false)}
+                    onSave={handleSaveEdit}
+                />
             )}
         </>
     );

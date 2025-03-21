@@ -16,7 +16,7 @@ export function GenerateImage() {
 
     const { getToken } = useAuth()
 
-    return <div className="h-[40vh] items-center justify-center flex">
+    return <div className="h-[60vh] items-center justify-center flex">
         <div>
             <SelectModel 
             selectedModel={selectedModel}
@@ -24,7 +24,7 @@ export function GenerateImage() {
             <div className="flex justify-center">
             <Textarea onChange={(e) => {
                 setPrompt(e.target.value);
-            }} placeholder="Describe the image that you'd like to see here" className="py-0 px-2 w-l" />
+            }} placeholder="Describe the image that you'd like to see" className="py-0 px-2 w-l" />
         </div>
             <div className="flex justify-center pt-1">
                 <Button onClick={async () => {

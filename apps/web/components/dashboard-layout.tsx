@@ -1,14 +1,14 @@
-"use client";
+
 // components/dashboard-layout.tsx
 import { ReactNode } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Brush, Grid, Image, ArrowUpRight, SquarePen, Sparkles } from "lucide-react";
-import Examples from "@/components/example";
 import { Packs } from "@/components/Packs";
 import Saved from "@/components/Saved";
 import GeneratedImages from "@/components/GeneratedImages";
 import { AppSidebar } from "@/components/app-sidebar";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import ImageCollage from "./ui/collage";
 
 interface DashboardLayoutProps {
     children: ReactNode;
@@ -60,7 +60,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                                         <p className="mt-4">Show the list of all packs here.</p>
                                     </TabsContent>
                                     <TabsContent value="examples" className="p-2">
-                                        <Examples />
+                                        <ImageCollage />
                                     </TabsContent>
                                     <TabsContent value="gallery" className="p-2">
                                         <GeneratedImages />

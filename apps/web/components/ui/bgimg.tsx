@@ -387,7 +387,7 @@ export default function Netflix() {
                 ref={mainHeadlineRef}
                 className="text-5xl font-bold tracking-tight drop-shadow-lg"
               >
-                Fuck Waiting for the Perfect Shot
+                Don't Wait for the Perfect Shot
               </h1>
             </div>
             
@@ -399,7 +399,7 @@ export default function Netflix() {
             </h1>
             
             <p className="text-2xl font-medium text-neutral-300 mt-6 mb-10 tracking-wide drop-shadow-lg">
-              Turn Your Face Into a Fucking Masterpiece!!
+              Turn Your Face Into a Masterpiece!!
             </p>
           </div>
           
