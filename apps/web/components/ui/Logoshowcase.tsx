@@ -1,6 +1,6 @@
 const Showcase = () => {
     return (
-      <div className="bg-black py-24 sm:py-32">
+      <div className="bg-black py-24 sm:py-0">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <h2 className="text-center text-lg/8 font-semibold text-gray-100">
             Trusted by the world's most innovative teams

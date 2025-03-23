@@ -10,7 +10,7 @@ import { Textarea } from "@headlessui/react";
 import { SelectModel } from "./Models";
 import toast from "react-hot-toast"
 
-export function GenerateImage() {
+export function GeneratePhotos() {
     const [prompt, setPrompt] = useState("");
     const [selectedModel, setSelectedModel] = useState<string>();
 

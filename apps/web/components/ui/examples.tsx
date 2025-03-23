@@ -1,8 +1,8 @@
 'use client';
 import React, { useState } from "react";
-import "./collage.css";
+import "./examples.css";
 
-const ImageCollage = () => {
+const Examples = () => {
   const [likedImages, setLikedImages] = useState<{ [key: number]: boolean }>({});
   
   // Sample data with image URLs, prompts, likes
@@ -102,7 +102,6 @@ const ImageCollage = () => {
       prompt: "Person standing in front of cosmic black hole in space",
       likes: 237
     },
-    // Add the rest of your images with similar data structure
   ];
 
   const handleLike = (index: number) => {
@@ -112,44 +111,80 @@ const ImageCollage = () => {
     });
   };
 
-  const getImageSize = (index: number) => {
-    // Create more dynamic sizes for grid layout
-    const sizes = ["small", "medium", "large", "medium", "small"];
-    return sizes[index % sizes.length];
+  // Function to determine item size (span) for masonry grid
+  const getItemSpan = (index: number) => {
+    // Create a pattern for different sized grid items
+    // First item is double size
+    if (index === 0) return 'span-1x2';
+    
+    // Some items span 2 columns
+    if (index % 7 === 3) return 'span-1x2';
+    
+    // Some items span 2 rows
+    if (index % 5 === 2) return 'span-1x2';
+    
+    // Most items are standard size
+    return '';
   };
 
   return (
-    <div className="gallery-container">
-      {imageData.map((image, index) => (
-        <div 
-          key={index} 
-          className={`gallery-item ${getImageSize(index)}`}
-        >
-          <div className="image-container">
-            <img 
-              src={image.url} 
-              alt={`Gallery ${index}`} 
-              className="gallery-image" 
-            />
-            <div className="image-overlay">
-              <div className="prompt-text">{image.prompt}</div>
-              <div className="like-container">
+    <div className="gallery-wrapper">
+      <div className="gallery-container">
+        {imageData.map((image, index) => (
+          <div 
+            key={index} 
+            className={`gallery-item ${getItemSpan(index)}`}
+          >
+            <div className="image-container">
+              <img 
+                src={image.url} 
+                alt={`Gallery ${index}`} 
+                className="gallery-image" 
+              />
+              
+              {/* Like button that appears without hover */}
+              <div className="like-button-container">
                 <button 
                   className={`like-button ${likedImages[index] ? 'liked' : ''}`}
-                  onClick={() => handleLike(index)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleLike(index);
+                  }}
                 >
                   <svg viewBox="0 0 24 24" className="heart-icon">
                     <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
                   </svg>
                 </button>
-                <span className="like-count">{likedImages[index] ? image.likes + 1 : image.likes}</span>
+                {index === 1 && <span className="like-count">{likedImages[index] ? image.likes + 1 : image.likes}</span>}
+              </div>
+              
+              {/* Hover overlay with prompt text */}
+              <div className="image-overlay">
+                <div className="prompt-text">{image.prompt}</div>
+                <div className="user-info">
+                  {index % 2 === 0 && (
+                    <div className="user-avatar">
+                      <span className="avatar-letter">{String.fromCharCode(65 + (index % 26))}</span>
+                    </div>
+                  )}
+                  <div className="like-container">
+                    <span className="like-count">{likedImages[index] ? image.likes + 1 : image.likes}</span>
+                  </div>
+                </div>
               </div>
             </div>
+            
+            {/* Caption that shows below certain images */}
+            {index === 5 && (
+              <div className="image-caption">
+                <p>Photojournalism style: A tense wildlife rescuer, late 30s, dark brown hair, short beard, piercing eyes, wearing a dark green jacket and gray sweate...</p>
+              </div>
+            )}
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };
 
-export default ImageCollage;
+export default Examples;

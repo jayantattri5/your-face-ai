@@ -3,7 +3,7 @@ import { ChevronDown } from "lucide-react";
 import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuItem } from "@/components/ui/sidebar";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@radix-ui/react-collapsible";
 import { Train } from "./train";
-import { GenerateImage } from "./GeneratePhotos";
+import { GeneratePhotos } from "./GeneratePhotos";
 
 const menuSections = [
   { title: "Generate Images from Prompt" },
@@ -17,7 +17,7 @@ export function AppSidebar() {
 
   return (
     <Sidebar className=" w-70 min-h-screen bg-black text-white">
-      <SidebarGroupLabel className="text-white">
+      <SidebarGroupLabel className="text-white py-9">
         This is a sidebar
       </SidebarGroupLabel>
       <SidebarContent>
@@ -38,7 +38,7 @@ export function AppSidebar() {
               className="p-4 bg-black text-white"
             >
               {section.title === "Generate Images from Prompt" ? (
-                <GenerateImage />
+                <GeneratePhotos />
               ) : section.title === "Create new AI model" ? (
                 <Train />
               ): section.title === "Export your model" ? (
