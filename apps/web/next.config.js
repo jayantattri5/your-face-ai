@@ -1,8 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    images: {
-        domains: ["im.runware.ai"], // Add Runware's image domain here
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'im.runware.ai',
       },
+    ],
+},
 };
 
 export default nextConfig;
