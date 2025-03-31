@@ -96,8 +96,9 @@ export default function Netflix() {
         setTimeout(() => {
           if (!palette) return;
           const colorIndex = Math.floor(Math.random() * palette.length);
+          // Fix: Check if mainLetters[i] and palette[colorIndex] exist
           if (mainLetters[i] && palette[colorIndex]) {
-            mainLetters[i].style.color = palette[colorIndex]!;
+            mainLetters[i]!.style.color = palette[colorIndex];
           }
         }, delay);
       }
@@ -108,8 +109,9 @@ export default function Netflix() {
         setTimeout(() => {
           if (!palette) return;
           const colorIndex = Math.floor(Math.random() * palette.length);
+          // Fix: Check if mainLetters[i] and palette[colorIndex] exist
           if (mainLetters[i] && palette[colorIndex]) {
-            mainLetters[i].style.color = palette[colorIndex]!;
+            mainLetters[i]!.style.color = palette[colorIndex];
           }
         }, delay);
       }
@@ -123,8 +125,9 @@ export default function Netflix() {
         setTimeout(() => {
           if (!palette) return;
           const colorIndex = Math.floor(Math.random() * palette.length);
+          // Fix: Check if subLetters[i] and palette[colorIndex] exist
           if (subLetters[i] && palette[colorIndex]) {
-            subLetters[i].style.color = palette[colorIndex];
+            subLetters[i]!.style.color = palette[colorIndex];
           }
         }, delay);
       }
@@ -182,9 +185,9 @@ export default function Netflix() {
       }
       
       const ctx = canvas.getContext('2d');
+      if (!ctx) return;
       
       // Create initial gradient background
-      if (!ctx) return;
       const grd = ctx.createLinearGradient(0, 0, width, 0);
       if (palette[0] && palette[1]) {
         grd.addColorStop(0, palette[0]);
@@ -197,20 +200,23 @@ export default function Netflix() {
       const isMobile = window.innerWidth < 768;
       const numPoints = isMobile ? 2 : 5; // Further reduced for better performance
       
-      const points: { x: number; y: number; radius: number; maxRadius: number; color: any; speed: number; }[] = [];
+      const points: { x: number; y: number; radius: number; maxRadius: number; color: string; speed: number; }[] = [];
       
       for (let i = 0; i < numPoints; i++) {
+        const colorIndex = Math.floor(Math.random() * palette.length);
+        // Fix: Ensure colorIndex is valid and provide a fallback
+        const color = palette[colorIndex] || palette[0] || '#ffffff';
+        
         points.push({
           x: Math.random() * width,
           y: Math.random() * height,
           radius: 0,
           maxRadius: Math.max(width, height) * 0.8,
-          color: palette[Math.floor(Math.random() * palette.length)],
+          color: color,
           speed: 1 + Math.random() * 2
         });
       }
       
-      let animationFrame;
       let startTime = Date.now();
       
       const animate = () => {
@@ -246,7 +252,7 @@ export default function Netflix() {
         const currentIsMobile = window.innerWidth < 768;
         const animDuration = currentIsMobile ? 3000 : 6500; // Further shortened
         if (elapsed < animDuration) {
-          animationFrame = requestAnimationFrame(animate);
+          window.buttonAnimationFrame = requestAnimationFrame(animate);
         }
       };
       
@@ -471,7 +477,7 @@ export default function Netflix() {
           
           <motion.button
             ref={buttonRef}
-            className="px-5 md:px-10 py-2 md:py-5 text-base md:text-lg font-semibold text-neutral-900 rounded-full hover:opacity-90 transition-all duration-300 transform shadow-lg hover:shadow-xl" // Smaller padding on mobile
+            className="px-5 md:px-10 py-2 md:py-5 text-base md:text-lg font-semibold text-neutral-900 rounded-full bg-gradient-to-r from-amber-400 to-amber-300 hover:opacity-90 transition-all duration-300 transform shadow-lg hover:shadow-xl" // Smaller padding on mobile
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
           >
