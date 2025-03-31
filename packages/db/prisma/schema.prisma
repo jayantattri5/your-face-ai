@@ -23,7 +23,7 @@ model User {
 
 enum ModelTrainingStatusEnum {
   PENDING
-  GENERATED
+  APPROVED
   REJECTED
 }
 
@@ -35,7 +35,7 @@ model Model {
   ethinicity      EthenecityEnum  
   eyeColor        EyeColorEnum
   bald            Boolean
-  userId          String?
+  userID          String?
   triggerWord     String?
   tensorPath      String?
   thumbnail       String?
@@ -51,23 +51,39 @@ model Model {
 
 enum OutputImageStatusEnum {
   PENDING
-  GENERTED
+  GENERATED
   REJECTED
 }
 
-model OutputImages {
-  id        String  @id   @default(uuid())
-  imageUrl  String  @default("")
-  modelId   String
-  userId    String
-  prompt    String
-  falAiRequestId    String?
-  status    OutputImageStatusEnum   @default(PENDING)
-  model     Model   @relation(fields: [modelId], references: [id])
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  @@index([falAiRequestId])
+model GeneratedImage {  
+  imageUUID  String  @unique @id @default(uuid())
+  taskUUID   String
+  imageURL   String
+  cost       Float
+  seed       String  // Change from BigInt to String
+  createdAt  DateTime @default(now())
+  OutputImages OutputImages[]
 }
+
+model OutputImages {
+  id               String  @id   @default(uuid())
+  imageUrl         String  @default("")
+  modelId          String?
+  userId           String
+  prompt           String
+  provider         ImageProviderEnum @default(FALAI)
+  falAiRequestId   String?
+  runwareRequestId String?
+  generatedImageId String?  // Links to GeneratedImage
+  status           OutputImageStatusEnum   @default(PENDING)
+  model            Model?   @relation(fields: [modelId], references: [id])
+  generatedImage   GeneratedImage? @relation(fields: [generatedImageId], references: [imageUUID])
+  createdat        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  @@index([falAiRequestId])
+  @@index([runwareRequestId])
+}
+
 
 model Packs {
   id        String   @id @default(uuid())
@@ -88,7 +104,7 @@ model PackPrompts {
 enum ModelTypeEnum {
   Man
   Woman
-  Others
+  Other
 }
 
 enum EthenecityEnum {
@@ -108,4 +124,9 @@ enum EyeColorEnum {
   Blue
   Hazel
   Gray
+}
+
+enum ImageProviderEnum {
+  FALAI
+  RUNWARE
 }
