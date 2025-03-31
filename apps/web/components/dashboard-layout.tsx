@@ -1,5 +1,4 @@
-"use client";
-import { ReactNode, useState } from "react";
+import { ReactNode } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Brush, Grid, Image, ArrowUpRight, SquarePen, Sparkles } from "lucide-react";
 import { Packs } from "@/components/Packs";
@@ -16,7 +15,6 @@ interface DashboardLayoutProps {
 }
 
 export function DashboardLayout({ children }: DashboardLayoutProps) {
-    const [activeTab, setActiveTab] = useState("default-tab");
     return (
         <div className="flex flex-col min-h-screen bg-black text-white">
             {/* Fixed navbar at the top */}
@@ -36,7 +34,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                         
                         {/* Tabs section */}
                         <div className="mt-4 px-4">
-                            <Tabs defaultValue={activeTab} onValueChange={setActiveTab} className="w-full">
+                            <Tabs defaultValue="gallery" className="w-full">
                                 {/* Tabs navigation */}
                                 <div className="sticky top-5 flex justify-center mb-8">
                                     <TabsList className="flex justify-between items-center bg-transparent">
@@ -88,7 +86,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                                 
                                 <TabsContent value="examples">
                                     <div className="p-4">
-                                        <Examples setActiveTab={setActiveTab} />
+                                        <Examples />
                                     </div>
                                 </TabsContent>
                                 
@@ -106,7 +104,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                                 
                                 <TabsContent value="infinity-section">
                                     <div className="p-4">
-                                    {activeTab === "infinity-section" && <RunwareGeneratePhotos />}
+                                        <RunwareGeneratePhotos />
                                     </div>
                                 </TabsContent>
                             </Tabs>

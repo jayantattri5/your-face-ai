@@ -2,24 +2,9 @@
 import React, { useState, useContext } from "react";
 import "./examples.css";
 
-const Examples = ({ setActiveTab }: { setActiveTab: (tab: string) => void }) => {
+const Examples = () => {
   const [likedImages, setLikedImages] = useState<{ [key: number]: boolean }>({});
-  const [clickedButtonIndex, setClickedButtonIndex] = useState<number | null>(null); // ✅ Define State
-  const handleUsePrompt = (prompt: string, index: number) => {
-
-    console.log("Clicked prompt:", prompt);
-    console.log("Before tab change:", clickedButtonIndex);
-
-    localStorage.setItem("selectedPrompt", prompt);
-    setClickedButtonIndex(index);
-
-    setTimeout(() => {
-      setActiveTab("infinity-section"); // Directly switch to the tab
-      console.log("After tab change: infinity-section");
-      
-      setTimeout(() => setClickedButtonIndex(null), 300);
-    }, 400);
-  };
+  const [clickedButtonIndex, setClickedButtonIndex] = useState<number | null>(null);
   
   // Sample data with image URLs, prompts, likes
   const imageData = [
@@ -509,6 +494,29 @@ const Examples = ({ setActiveTab }: { setActiveTab: (tab: string) => void }) => 
     });
   };
 
+  // Function to handle using a prompt for generation
+  const handleUsePrompt = (prompt: string, index: number) => {
+    // Store the prompt in localStorage so it's available after tab navigation
+    localStorage.setItem('selectedPrompt', prompt);
+    
+    // Set which button was clicked for animation
+    setClickedButtonIndex(index);
+    
+    // Set a timeout to give animation time to play before switching tabs
+    setTimeout(() => {
+      // Find and click the infinity-section tab
+      const infinityTab = document.querySelector('[value="infinity-section"]') as HTMLElement;
+      if (infinityTab) {
+        infinityTab.click();
+      }
+      
+      // Reset the clicked state after animation completes
+      setTimeout(() => {
+        setClickedButtonIndex(null);
+      }, 300);
+    }, 400);
+  };
+
   // Function to determine item size (span) for masonry grid
   const getItemSpan = (index: number) => {
     // Create a pattern for different sized grid items
@@ -569,7 +577,7 @@ const Examples = ({ setActiveTab }: { setActiveTab: (tab: string) => void }) => 
                 
                 {/* Updated "Use this prompt" button with animation */}
                 <button 
-                  className={`use-prompt-button ${clickedButtonIndex === index ? "clicked" : ""}`}
+                  className={`use-prompt-button absolute mt-38 right-2 ${clickedButtonIndex === index ? 'clicked' : ''}`}
                   onClick={(e) => {
                     e.stopPropagation();
                     handleUsePrompt(image.prompt, index);
