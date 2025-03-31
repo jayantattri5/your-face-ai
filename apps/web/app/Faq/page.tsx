@@ -40,7 +40,12 @@ const FAQSection = () => {
   return (
     <div className="min-h-screen bg-black text-white p-8">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-5xl font-bold mb-16">Frequently asked questions</h1>
+        <h1 className="text-5xl font-bold mb-16">
+        <span className="bg-gradient-to-r from-pink-500 to-purple-500 text-transparent bg-clip-text">
+          Frequently
+          </span>{" "}
+           asked questions
+           </h1>
         
         <div className="space-y-4">
           {faqItems.map((item, index) => (

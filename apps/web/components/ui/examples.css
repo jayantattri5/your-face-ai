@@ -113,31 +113,7 @@ body {
     font-size: 14px;
     color: white;
   }
-  
-  /* Play button overlay for video content */
-  .play-icon-container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 5;
-  }
-  
-  .play-icon {
-    width: 50px;
-    height: 50px;
-    background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .play-icon svg {
-    width: 30px;
-    height: 30px;
-  }
-  
+
   /* Hover overlay */
   .image-overlay {
     position: absolute;

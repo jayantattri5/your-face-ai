@@ -1,10 +1,28 @@
 .gallery-container {
-  display: grid ;
+  display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   grid-auto-rows: 250px;
-  grid-gap: 10px;
+  grid-gap:15px;
   padding: 10px;
   background-color: #000000;
+  position: relative;
+}
+
+/* Updated shadow overlay with increased darkness */
+.gallery-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 200px; /* Slightly increased height */
+  background: linear-gradient(to bottom, 
+                rgba(0, 0, 0, 0.95) 0%, 
+                rgba(0, 0, 0, 0.85) 30%, 
+                rgba(0, 0, 0, 0.7) 60%, 
+                rgba(0, 0, 0, 0) 100%);
+  z-index: 1;
+  pointer-events: none;
 }
 
 .gallery-item {
@@ -21,7 +39,7 @@
 }
 
 .gallery-item.small {
-  grid-row: span 1;
+  grid-row: span 2;
 }
 
 .gallery-item.medium {

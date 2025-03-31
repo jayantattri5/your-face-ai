@@ -1,19 +1,22 @@
-import { ReactNode } from "react";
+"use client";
+import { ReactNode, useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Brush, Grid, Image, ArrowUpRight, SquarePen, Sparkles } from "lucide-react";
 import { Packs } from "@/components/Packs";
-import Saved from "@/components/Saved";
 import GeneratedImages from "@/components/GeneratedImages";
 import { AppSidebar } from "@/components/app-sidebar";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import Examples from "./ui/examples";
 import { Navbar } from "@/components/navbar"; // Import the Navbar component
+import PackImages from "@/components/PackImages";
+import { RunwareGeneratePhotos } from "./Runwaregeneration";
 
 interface DashboardLayoutProps {
     children: ReactNode;
 }
 
 export function DashboardLayout({ children }: DashboardLayoutProps) {
+    const [activeTab, setActiveTab] = useState("default-tab");
     return (
         <div className="flex flex-col min-h-screen bg-black text-white">
             {/* Fixed navbar at the top */}
@@ -33,7 +36,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                         
                         {/* Tabs section */}
                         <div className="mt-4 px-4">
-                            <Tabs defaultValue="gallery" className="w-full">
+                            <Tabs defaultValue={activeTab} onValueChange={setActiveTab} className="w-full">
                                 {/* Tabs navigation */}
                                 <div className="sticky top-5 flex justify-center mb-8">
                                     <TabsList className="flex justify-between items-center bg-transparent">
@@ -60,18 +63,18 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                                             <span>Gallery</span>
                                         </TabsTrigger>
                                         
-                                        <TabsTrigger value="upscaler" className="flex flex-col items-center text-white px-4">
+                                        <TabsTrigger value="packs example" className="flex flex-col items-center text-white px-4">
                                             <div className="p-2 rounded-lg mb-2">
                                                 <ArrowUpRight size={20} />
                                             </div>
-                                            <span>Upscaler</span>
+                                            <span>Pack's Example</span>
                                         </TabsTrigger>
                                         
-                                        <TabsTrigger value="canvas-editor" className="flex flex-col items-center text-white px-4">
+                                        <TabsTrigger value="infinity-section" className="flex flex-col items-center text-white px-4">
                                             <div className="p-2 rounded-lg mb-2">
                                                 <Sparkles size={20} />
                                             </div>
-                                            <span>Canvas Editor</span>
+                                            <span>Infinity Section</span>
                                         </TabsTrigger>
                                     </TabsList>
                                 </div>
@@ -85,7 +88,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                                 
                                 <TabsContent value="examples">
                                     <div className="p-4">
-                                        <Examples />
+                                        <Examples setActiveTab={setActiveTab} />
                                     </div>
                                 </TabsContent>
                                 
@@ -95,15 +98,15 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                                     </div>
                                 </TabsContent>
                                 
-                                <TabsContent value="upscaler">
+                                <TabsContent value="packs example">
                                     <div className="p-4">
-                                        <Saved />
+                                        <PackImages />
                                     </div>
                                 </TabsContent>
                                 
-                                <TabsContent value="canvas-editor">
+                                <TabsContent value="infinity-section">
                                     <div className="p-4">
-                                        <p>Canvas editor features will appear here.</p>
+                                    {activeTab === "infinity-section" && <RunwareGeneratePhotos />}
                                     </div>
                                 </TabsContent>
                             </Tabs>

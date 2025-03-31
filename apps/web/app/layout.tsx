@@ -15,7 +15,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "AI Photo & Viideo Generator | YourFace AI",
+  title: "AI Photo & Video Generator | YourFace AI",
   description: "Create stunning AI-generated photos and videos with YourFace AI.",
 };
 
