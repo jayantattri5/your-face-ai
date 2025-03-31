@@ -1,4 +1,5 @@
 import { fal } from "@fal-ai/client";
+import { RunwareAIModel } from "./models/RunwareAIModel";
 import express from "express";
 import { TrainModel, GenerateImage, GenerateImagesFromPack } from "common/types";
 import { prismaClient } from "db";
@@ -10,8 +11,10 @@ import { authMiddleware } from "./middleware";
 const PORT = process.env.PORT || 8080;
 
 const falAiModel = new FalAIModel();
+const runwareModel = new RunwareAIModel();
 
 const app = express();
+const prisma = prismaClient;
 app.use(cors());
 app.use(express.json());
 
@@ -105,6 +108,46 @@ app.post("/ai/generate", authMiddleware, async (req, res) => {
         imageId: data.id
     })
 })
+
+app.post("/runware/generate", async (req, res) => {
+  try {
+    const { imageUUID, taskUUID, imageURL, cost, seed, userId, prompt, runwareRequestId } = req.body;
+
+    if (!imageUUID || !taskUUID || !imageURL || !userId || !prompt) {
+      return res.status(400).json({ error: "Missing required fields" });
+    }
+
+    // Store the generated image
+    const generatedImage = await prisma.generatedImage.create({
+      data: {
+        imageUUID,
+        taskUUID,
+        imageURL,
+        cost,
+        seed,
+      },
+    });
+
+    // Link it to OutputImages
+    const outputImage = await prisma.outputImages.create({
+      data: {
+        imageUrl: imageURL,
+        userId: String(req.body.userId),
+        prompt,
+        provider: "RUNWARE",
+        runwareRequestId,
+        generatedImageId: generatedImage.imageUUID,
+        status: "GENERATED",
+      },
+    });
+
+    res.json({ success: true, generatedImage, outputImage });
+  } catch (error) {
+    console.error("Error storing Runware image:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
 
 app.post("/pack/generate", authMiddleware, async (req, res) => {
     const parsedBody = GenerateImagesFromPack.safeParse(req.body)
@@ -290,6 +333,8 @@ app.post("/fal-ai/webhook/image", async (req, res) => {
       message: "Webhook received"
   });
 })
+
+
 
 app.listen(PORT, () => {
   console.log('Server is running on port 8080');
