@@ -9,7 +9,6 @@ export const TrainModel = z.object({
         "Asian_American",
         "East_Asian",
         "South_East_Asian",
-        "South_East_Asian",
         "South_Asian",
         "Middle_Eastern",
         "Pacific",
@@ -28,6 +27,21 @@ export const GenerateImage = z.object({
     prompt: z.string(),
     modelId: z.string(),
     num: z.number(),
+})
+
+export const GenerateImageRunware = z.object({
+    taskType: z.literal("imageInference"),
+    taskUUID: z.string(),
+    positivePrompt: z.string(),
+    model: z.string(),
+    outputType: z.literal("URL"),
+    outputFormat: z.literal("JPG"),
+    uploadEndpoint: z.string(),
+    includeCost: z.boolean(),
+    negativePrompt: z.string(),
+    height: z.number(),
+    width: z.number(),
+    numberResults: z.number(),
 })
 
 export const GenerateImagesFromPack= z.object({
