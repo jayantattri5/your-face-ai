@@ -5,7 +5,7 @@ const UserGuide = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const [direction, setDirection] = useState('next');
-  const containerRef = useRef(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   // Sample data - replace with your actual data
   const carouselData = [
@@ -51,7 +51,7 @@ const UserGuide = () => {
     }
   ];
 
-  const goToSlide = (index) => {
+  const goToSlide = (index: number) => {
     if (isAnimating || index === currentIndex) return;
     
     setIsAnimating(true);
@@ -80,12 +80,14 @@ const UserGuide = () => {
     let touchStartX = 0;
     let touchEndX = 0;
     
-    const handleTouchStart = (e) => {
-      touchStartX = e.changedTouches[0].screenX;
+    const handleTouchStart = (e: TouchEvent) => {
+      if (e.changedTouches[0]) {
+        touchStartX = e.changedTouches[0].screenX;
+      }
     };
     
-    const handleTouchEnd = (e) => {
-      touchEndX = e.changedTouches[0].screenX;
+    const handleTouchEnd = (e: TouchEvent) => {
+      touchEndX = e.changedTouches[0]?.screenX || 0;
       handleSwipe();
     };
     
