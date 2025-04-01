@@ -233,7 +233,7 @@ app.get("/image/bulk", authMiddleware, async (req, res) => {
       skip: offset,
       take: limit,
       orderBy: {
-        createdat: 'desc'  // Most recent images first
+      createdat: 'desc'  // Most recent images first
       }
     });
 
@@ -253,11 +253,11 @@ app.get("/image/bulk", authMiddleware, async (req, res) => {
 
 app.get("/models", authMiddleware, async(req, res) => {
   try {
-    console.log("User ID:", req.userId); // Log to confirm user ID is present
+    console.log("User Id:", req.userId); // Log to confirm user ID is present
     
     const models = await prismaClient.model.findMany({
       where: {
-        OR: [{ userID: req.userId }, {open: true }]
+        OR: [{ userId: req.userId }, {open: true }]
       }
     });
     
