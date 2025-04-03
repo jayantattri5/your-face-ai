@@ -9,35 +9,37 @@ const PricingPage = () => {
   const pricingPlans = [
     {
       name: "Starter",
-      monthlyPrice: 15,
+      monthlyPrice: 12,
       annualPrice: 8,
       description: "Great for users who are just starting out",
       popular: false,
       features: [
+        "All free features",
         "Take 50 AI Photos (credits)",
-        "Create 1 AI Model per month",
+        "Create 3 AI Model per month",
         "Flux™ 1.1 photorealistic model",
         "Low quality photos",
         "Low resemblance",
         "Take 1 photo at a time",
+        "Write your own prompts",
         "Use any photo pack",
         "For personal use only"
       ]
     },
     {
       name: "Pro",
-      monthlyPrice: 49,
-      annualPrice: 20, // 60% discount for annual
+      monthlyPrice: 40,
+      annualPrice: 21, // 60% discount for annual
       description: "Best for users Pro at Generative AI",
       popular: false,
       features: [
-        "Take 1,000 AI Photos (credits)",
-        "Create 3 AI Models per month",
+        "All Starter features",
+        "Take 500 AI Photos (credits)",
+        "Create 7 AI Models per month",
         "Flux™ 1.1 photorealistic model",
         "Medium quality photos",
         "Passable resemblance",
         "Take up to 4 photos in parallel",
-        "Write your own prompts",
         "Commercial use license"
       ]
     },
@@ -48,8 +50,8 @@ const PricingPage = () => {
       description: "Best for users Pro Max in this art of generating Images",
       popular: true,
       features: [
-        "Take 3,000 AI Photos (credits)",
-        "Create 10 AI Models per month",
+        "Take 2000 AI Photos (credits)",
+        "Create 15 AI Models per month",
         "Flux™ 1.1 photorealistic model",
         "High quality photos",
         "High resemblance",
@@ -60,12 +62,12 @@ const PricingPage = () => {
     },
     {
       name: "Ultra Pro Max",
-      monthlyPrice: 199,
+      monthlyPrice: 249,
       annualPrice: 80, // 60% discount for annual
       description: "This is for Ultra Pro Max people who rarely take birth on planet Earth",
       popular: false,
       features: [
-        "Take 10,000 AI Photos (credits)",
+        "Take 5000 AI Photos (credits)",
         "Create 50 AI Models per month",
         "Flux™ 1.1 photorealistic model",
         "Ultra-high quality photos",
@@ -87,13 +89,18 @@ const PricingPage = () => {
     description: "This is just for bringing traffic to our website",
     popular: false,
     features: [
-      "Get access to our Infinity section 🔥",
-      "Generate Infinite photos 🔥",
-      "Infinite photos 🔥",
+      "Create 1 AI Model",
+      "Generate 3 photos using that model",
+      "Flux™ 1.1 photorealistic model",
+      "Access to other public models",
+      "Very Low quality photos",
+      "Very Low resemblance",
+      "Very slow response time",
+      "Take 1 photo at a time",
+      "Write your own prompts",
+      "Use any photo pack",
+      "Generate Infinite photos in Infinite Section 🔥",
       "Infinite photo storage 🔥",
-      "Infinite response times 🔥",
-      "No limitations 🔥",
-      "Infinite Everything 🔥",
       "No need to pay 🔥",
       "Just need to sign up 🔥",
     ]
@@ -105,7 +112,7 @@ const PricingPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white flex flex-col items-center justify-center px-4 relative overflow-hidden">
+    <div className="min-h-screen bg-black text-white flex flex-col items-center justify-center py-9 px-4 relative overflow-hidden">
       <h1 className="text-4xl font-semibold text-center">
         <span className="bg-gradient-to-r from-pink-500 to-purple-500 text-transparent bg-clip-text">
           Simple

@@ -10,6 +10,7 @@ import UserGuide from "@/components/ui/guide";
 import Explanation from "@/components/explanation";
 import Showcase from "@/components/ui/Logoshowcase";
 import Detailing from "@/components/Detailing";
+import PackCardCarousel from "@/components/Allpacks";
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
       <Detailing />
       <UserGuide />
       <ProductComparison />
+      <PackCardCarousel />
       <PricingPage />
       <FAQSection />
       <Footer />
