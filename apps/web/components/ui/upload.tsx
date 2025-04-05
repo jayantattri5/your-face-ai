@@ -9,14 +9,14 @@ export function Upload({onUploadDone}:
     {onUploadDone: (zipUrl: string) => void
 }) {
   return (
-    <Card>
-      <CardHeader>
+    <Card className="bg-black text-white w-62 mx-auto mt-0">
+      <CardHeader className="text-center">
         <CardTitle>Upload Images</CardTitle>
         <CardDescription>Drag and drop your images or click the button below to select files.</CardDescription>
       </CardHeader>
-      <CardContent className="flex flex-col items-center justify-center border-2 border-dashed border-zinc-200 dark:border-zinc-800 rounded-lg p-10 space-y-6">
+      <CardContent className="flex flex-col bg-black items-center justify-center border-2 border-dashed border-zinc-200 dark:border-zinc-800 rounded-lg p-10 space-y-6">
         <CloudUploadIcon className="w-16 h-16 text-zinc-500 dark:text-zinc-400" />
-        <Button variant="outline" className="w-full" onClick={() => {
+        <Button variant="default" className="w-full" onClick={() => {
             const input = document.createElement("input");
             input.type = "file";
             input.accept="image/";

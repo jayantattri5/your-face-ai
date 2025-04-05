@@ -1,0 +1,23 @@
+{
+    "name": "YourFaceAI",
+    "short_name": "YourFaceAI",
+    "description": "Generate stunning, realistic AI photos of yourself.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#101010",
+    "orientation": "portrait",
+    "icons": [
+      {
+        "src": "https://pub-1c024d6181db4a8d9ce127046cdbc59f.r2.dev/android-chrome-192x192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "https://pub-1c024d6181db4a8d9ce127046cdbc59f.r2.dev/android-chrome-512x512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ]
+  }
+  

@@ -2,15 +2,15 @@
 import { ChevronDown } from "lucide-react";
 import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuItem } from "@/components/ui/sidebar";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@radix-ui/react-collapsible";
-import { Train } from "./train";
+import Train from "./train";
 import { GeneratePhotos } from "./GeneratePhotos";
 
 const menuSections = [
   { title: "Generate Images from Prompt" },
   { title: "Remix a Photo" },
   { title: "News + coming soon 🌟" },
-  { title: "Create new AI model" },
   { title: "Export your model" },
+  { title: "Create new AI model" },
 ];
 
 export function AppSidebar() {
