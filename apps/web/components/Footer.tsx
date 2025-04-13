@@ -194,6 +194,12 @@ export function Footer() {
                 >
                   Pricing
                 </Link>
+                <Link
+                  href="/Blog"
+                  className="text-sm text-muted-foreground hover:text-foreground"
+                >
+                  Blog
+                </Link>
               </nav>
             </div>
 

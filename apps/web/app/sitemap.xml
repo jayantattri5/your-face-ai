@@ -19,7 +19,13 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://yourfaceai.com/About</loc>
+    <loc>https://yourfaceai.com/Pricing</loc>
+    <lastmod>2025-04-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://yourfaceai.com/Blog</loc>
     <lastmod>2025-04-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
