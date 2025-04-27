@@ -5,6 +5,14 @@ import React, { useState } from "react";
 const PricingPage = () => {
   const [isAnnual, setIsAnnual] = useState(true);
   
+  // Exchange rate (example value - you can adjust as needed)
+  const usdToInrRate = 83.5;
+  
+  // Helper function to convert USD to INR
+  const convertToInr = (usdPrice: number) => {
+    return Math.round(usdPrice * usdToInrRate);
+  };
+  
   // Pricing plans data structure for easy customization
   const pricingPlans = [
     {
@@ -169,11 +177,18 @@ const PricingPage = () => {
               ${isAnnual ? plan.annualPrice : plan.monthlyPrice}
               <span className="text-lg font-normal">/{isAnnual ? "year" : "month"}</span>
             </p>
+            <p className="text-xl text-gray-400 mt-1">
+              (₹{isAnnual ? convertToInr(plan.annualPrice) : convertToInr(plan.monthlyPrice)})
+            </p>
             {/* Added "Billed annually" text with total annual price for annual plans */}
             {isAnnual && (
               <div className="text-sm text-gray-400 mt-1">
                 <p>Billed annually</p>
-                <p className="mt-1">Total: ${plan.annualPrice * 12}/year</p>
+                <p className="mt-1">
+                  Total: ${plan.annualPrice * 12}/year
+                  <br />
+                  (₹{convertToInr(plan.annualPrice * 12)}/year)
+                </p>
               </div>
             )}
             <p className="text-gray-400 mt-2 relative">{plan.description}</p>
@@ -205,11 +220,18 @@ const PricingPage = () => {
                 ${isAnnual ? lastPlan.annualPrice : lastPlan.monthlyPrice}
                 <span className="text-lg font-normal">/{isAnnual ? "year" : "month"}</span>
               </p>
+              <p className="text-xl text-gray-400 mt-1">
+                (₹{isAnnual ? convertToInr(lastPlan.annualPrice) : convertToInr(lastPlan.monthlyPrice)})
+              </p>
               {/* Added "Billed annually" text with total annual price for annual plans */}
               {isAnnual && (
                 <div className="text-sm text-gray-400 mt-1">
                   <p>Billed annually</p>
-                  <p className="mt-1">Total: ${lastPlan.annualPrice * 12}/year</p>
+                  <p className="mt-1">
+                    Total: ${lastPlan.annualPrice * 12}/year
+                    <br />
+                    (₹{convertToInr(lastPlan.annualPrice * 12)}/year)
+                  </p>
                 </div>
               )}
               <p className="text-gray-400 mt-2">{lastPlan.description}</p>

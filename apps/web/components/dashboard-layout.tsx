@@ -6,9 +6,10 @@ import GeneratedImages from "@/components/GeneratedImages";
 import { AppSidebar } from "@/components/app-sidebar";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import Examples from "./ui/examples";
-import { Navbar } from "@/components/navbar"; // Import the Navbar component
+import { Navbar } from "@/components/navbar";
 import PackImages from "@/components/PackImages";
 import { RunwareGeneratePhotos } from "./Runwaregeneration";
+import { HorizontalMobileSidebar } from "@/components/horizontal-mobile-sidebar"; // Import the new component
 
 interface DashboardLayoutProps {
     children: ReactNode;
@@ -20,9 +21,13 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
             {/* Fixed navbar at the top */}
             <Navbar />
             
+            {/* Horizontal Mobile Sidebar - only visible on mobile */}
+            <HorizontalMobileSidebar />
+            
             {/* Content area below navbar */}
             <div className="flex flex-1 overflow-hidden">
                 <SidebarProvider>
+                    {/* Vertical sidebar - hidden on mobile */}
                     <AppSidebar />
                     
                     <main className="flex-1 overflow-auto">

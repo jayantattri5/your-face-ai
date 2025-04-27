@@ -14,9 +14,8 @@ const menuSections = [
 ];
 
 export function AppSidebar() {
-
   return (
-    <Sidebar className=" w-70 min-h-screen bg-black text-white">
+    <Sidebar className="w-70 min-h-screen bg-black text-white hidden md:block">
       <SidebarGroupLabel className="text-white py-9">
         This is a sidebar
       </SidebarGroupLabel>

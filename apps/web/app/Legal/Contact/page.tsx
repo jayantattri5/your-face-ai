@@ -1,4 +1,10 @@
+import { Metadata } from "next";
 import React from "react";
+
+export const metadata: Metadata = {
+  title: "Contact Us",
+  description: "If you have any query, please contact us at support@yourfaceai.com .",
+};
 
 export default function Refund () {
   return (
