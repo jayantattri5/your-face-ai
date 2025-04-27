@@ -37,7 +37,7 @@ const PricingPage = () => {
     {
       name: "Pro",
       monthlyPrice: 40,
-      annualPrice: 21, // 60% discount for annual
+      annualPrice: 20, // 60% discount for annual
       description: "Best for users Pro at Generative AI",
       popular: false,
       features: [
