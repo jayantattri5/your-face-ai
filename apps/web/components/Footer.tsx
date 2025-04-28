@@ -230,6 +230,12 @@ export function Footer() {
                 >
                   Terms & Conditions
                 </Link>
+                <Link
+                  href="/Privacy Policy"
+                  className="text-sm text-muted-foreground hover:text-foreground"
+                >
+                  Privacy Policy
+                </Link>
               </nav>
             </div>
           </div>
