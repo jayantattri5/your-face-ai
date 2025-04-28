@@ -5,8 +5,12 @@ import { Shield, Lock, Database, Eye, FileText, Bell, UserCheck } from 'lucide-r
 export default function PrivacyPolicy() {
   const [activeSection, setActiveSection] = useState('introduction');
   const [isScrolling, setIsScrolling] = useState(false);
+  const [scrollPosition, setScrollPosition] = useState(0);
   
   useEffect(() => {
+    // Set initial scroll position
+    setScrollPosition(window.scrollY);
+    
     // Intersection Observer for fade-in animations
     const observer = new IntersectionObserver(
       (entries) => {
@@ -27,6 +31,7 @@ export default function PrivacyPolicy() {
     // Scroll tracking for nav highlighting
     const handleScroll = () => {
       setIsScrolling(true);
+      setScrollPosition(window.scrollY);
       
       const sections = document.querySelectorAll('section');
       let currentActiveSection = 'introduction';
