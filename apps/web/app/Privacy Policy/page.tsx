@@ -5,12 +5,47 @@ import { Shield, Lock, Database, Eye, FileText, Bell, UserCheck } from 'lucide-r
 export default function PrivacyPolicy() {
   const [activeSection, setActiveSection] = useState('introduction');
   const [isScrolling, setIsScrolling] = useState(false);
-  const [scrollPosition, setScrollPosition] = useState(0);
+  const [currentYear, setCurrentYear] = useState(2025); // Default value
+
+  useEffect(() => {
+    // Update year client-side
+    setCurrentYear(new Date().getFullYear());
+  }, []);
+
+  // Client component for the back-to-top button
+function BackToTopButton() {
+  const [showButton, setShowButton] = useState(false);
+
+  useEffect(() => {
+    // Only access window in useEffect (client-side)
+    const handleScroll = () => {
+      setShowButton(window.scrollY > 300);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  return (
+    <button 
+      onClick={scrollToTop}
+      className={`fixed bottom-8 right-8 bg-blue-600 text-white p-3 rounded-full shadow-lg 
+        transition-all duration-300 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400
+        ${showButton ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'}`}
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
+      </svg>
+    </button>
+  );
+}
   
   useEffect(() => {
-    // Set initial scroll position
-    setScrollPosition(window.scrollY);
-    
+    // Client-side code only - safe to use window here
     // Intersection Observer for fade-in animations
     const observer = new IntersectionObserver(
       (entries) => {
@@ -31,7 +66,6 @@ export default function PrivacyPolicy() {
     // Scroll tracking for nav highlighting
     const handleScroll = () => {
       setIsScrolling(true);
-      setScrollPosition(window.scrollY);
       
       const sections = document.querySelectorAll('section');
       let currentActiveSection = 'introduction';
@@ -62,10 +96,12 @@ export default function PrivacyPolicy() {
     setActiveSection(sectionId);
     
     const section = document.getElementById(sectionId as string);
-    window.scrollTo({
-      top: section ? section.offsetTop - 80 : 0,
-      behavior: 'smooth'
-    });
+    if (typeof window !== 'undefined') { // Check if window exists
+      window.scrollTo({
+        top: section ? section.offsetTop - 80 : 0,
+        behavior: 'smooth'
+      });
+    }
     
     setTimeout(() => {
       setIsScrolling(false);
@@ -409,7 +445,7 @@ export default function PrivacyPolicy() {
                 </p>
                 <ul className="list-disc list-inside text-gray-600 space-y-2 pl-4 mt-2">
                   <li>Access your account settings</li>
-                  <li>Contact us at privacy@company.com</li>
+                  <li>Contact us at support@yourfaceai.com</li>
                   <li>Use the "Privacy Request" form on our website</li>
                 </ul>
                 <p className="text-gray-600 mt-4">
@@ -452,7 +488,7 @@ export default function PrivacyPolicy() {
               <div className="animate-section opacity-0 translate-y-8 transition-all duration-700 delay-200">
                 <h3 className="text-xl font-semibold mb-3 text-gray-800">Previous Versions</h3>
                 <p className="text-gray-600">
-                  You can request access to previous versions of our Privacy Policy by contacting us at privacy@company.com.
+                  You can request access to previous versions of our Privacy Policy by contacting us at support@yourfaceai.com.
                 </p>
               </div>
               
@@ -491,7 +527,7 @@ export default function PrivacyPolicy() {
                     </div>
                     <div>
                       <h3 className="font-medium text-gray-900">Email</h3>
-                      <p className="text-blue-600">privacy@company.com</p>
+                      <p className="text-blue-600">support@yourfaceai.com</p>
                     </div>
                   </div>
                   
@@ -595,7 +631,7 @@ export default function PrivacyPolicy() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
-              <h3 className="text-xl font-bold mb-4">Company Name</h3>
+              <h3 className="text-xl font-bold mb-4">YourFace AI</h3>
               <p className="text-gray-400">
                 We are committed to protecting your privacy and ensuring the security of your personal information.
               </p>
@@ -656,7 +692,7 @@ export default function PrivacyPolicy() {
           </div>
           
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-            <p>© {new Date().getFullYear()} Company Name. All rights reserved.</p>
+            <p>© {currentYear} Fabric Bazaar. All rights reserved.</p>
           </div>
         </div>
         
@@ -664,11 +700,11 @@ export default function PrivacyPolicy() {
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "WebPage",
-          "name": "Privacy Policy - Company Name",
-          "description": "Learn about how we collect, use, and protect your personal information at Company Name.",
+          "name": "Privacy Policy - YourFace AI",
+          "description": "Learn about how we collect, use, and protect your personal information at YourFace AI.",
           "publisher": {
             "@type": "Organization",
-            "name": "Company Name",
+            "name": "YourFace AI",
             "logo": {
               "@type": "ImageObject",
               "url": "https://www.company.com/logo.png"
@@ -687,16 +723,8 @@ export default function PrivacyPolicy() {
       </footer>
       
       {/* Back to top button with animation */}
-      <button 
-        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-        className={`fixed bottom-8 right-8 bg-blue-600 text-white p-3 rounded-full shadow-lg transition-all duration-300 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 ${
-          window.scrollY > 300 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'
-        }`}
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
-        </svg>
-      </button>
+      {/* Back to top button component */}
+      <BackToTopButton />
     </div>
   );
 }
