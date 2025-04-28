@@ -231,7 +231,7 @@ export function Footer() {
                   Terms & Conditions
                 </Link>
                 <Link
-                  href="/Privacy Policy"
+                  href="/Privacypolicy"
                   className="text-sm text-muted-foreground hover:text-foreground"
                 >
                   Privacy Policy
