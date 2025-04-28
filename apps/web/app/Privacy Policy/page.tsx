@@ -1,3 +1,4 @@
+"use client";
 import { useState, useEffect, SetStateAction } from 'react';
 import { Shield, Lock, Database, Eye, FileText, Bell, UserCheck } from 'lucide-react';
 
